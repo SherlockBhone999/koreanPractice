@@ -1,6 +1,60 @@
 import {useState, useEffect} from 'react'
+import { words } from './words'
 
 
+const getArrayOfSingleLetters = () => {
+  const arr = []
+  words.map( obj => {
+    const str = obj.korean
+    for(let i=0; i< str.length ; i++){
+      if(!arr.includes(str[i])){ arr.push(str[i]) }
+    }
+  })
+  return arr
+}
+
+export const arrayOfSingleLetters = getArrayOfSingleLetters()
+
+const OneItem = ({setInput,value,styledItem,setStyledItem}) => {
+  const [style, setStyle] = useState('')
+  
+  useEffect(()=>{
+    if(styledItem === value){
+      setStyle('bg-blue-600 rounded text-white')
+    }else{
+      setStyle('')
+    }
+  },[styledItem])
+  
+  return <div>
+    <button onClick={()=>{
+      setInput(value)
+      setStyledItem(value)
+    }} class={`pr-2 ${style}`}>{value}</button>
+  </div>
+}
+
+export default function FillerKeyboard({setInput, keyboardState }){
+  const [styledItem,setStyledItem] = useState('')
+  return (
+  <div class={`grid fixed top-0 right-0 h-60 w-60 overflow-scroll overflow-x-scroll bg-blue-200 border-4 border-black p-2 ${keyboardState}`}>
+
+    <div class='grid grid-cols-10'>
+    {arrayOfSingleLetters.map(str => <div>
+          <OneItem setInput={setInput} 
+          value={str} 
+          styledItem={styledItem}
+          setStyledItem={setStyledItem}/>
+    </div>)}
+    </div>
+    
+  </div>
+    )
+}
+
+
+
+/*
 const extraArray = [
 '회',
 '뇌',
@@ -339,41 +393,4 @@ const kyaArray = [
 
 
 const bigArray = [ extraArray, gaArray, naArray, daArray, raArray, maArray, baArray, saArray, aArray, jaArray, chaArray, khaArray, htaArray, phaArray, haArray, kaArray, paArray, ssaArray, kyaArray ]
-
-const OneItem = ({setInput,value,styledItem,setStyledItem}) => {
-  const [style, setStyle] = useState('')
-  
-  useEffect(()=>{
-    if(styledItem === value){
-      setStyle('bg-blue-600 rounded text-white')
-    }else{
-      setStyle('')
-    }
-  },[styledItem])
-  
-  return <div>
-    <button onClick={()=>{
-      setInput(value)
-      setStyledItem(value)
-    }} class={`pr-2 ${style}`}>{value}</button>
-  </div>
-}
-
-export default function FillerKeyboard({setInput, keyboardState }){
-  const [styledItem,setStyledItem] = useState('')
-  return (
-  <div class={`grid fixed top-0 right-0 h-60 w-60 overflow-scroll overflow-x-scroll bg-blue-200 border-4 border-black p-2 ${keyboardState}`}>
-    {bigArray.map(arr => <div class='flex p-1 '>
-      {
-        arr.map(str => <div>
-          <OneItem setInput={setInput} 
-          value={str} 
-          styledItem={styledItem}
-          setStyledItem={setStyledItem}/>
-        </div>)
-      }
-      </div>
-    ) }
-  </div>
-    )
-}
+*/

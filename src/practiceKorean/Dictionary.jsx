@@ -3,7 +3,7 @@
 import { words } from './words'
 import { useState, useEffect, useRef } from 'react'
 import FillerKeyboard from './FillerKeyboard'
-
+import { arrayOfSingleLetters } from './FillerKeyboard'
 
 ///////////////////////////////////////////////////////////
 const seeIfItemIsAlreadyInArray = (array, item) => {
@@ -98,24 +98,50 @@ const getSimilarWordsForKorean = (targetWord, array) => {
   if(targetWord.length === 1){
     const array1 = array.filter(obj => obj.korean.includes(targetWord))
     const array2 = arrangeArrayItemsFromShortToLongForKorean(array1, targetWord)
-    return array2
+    const array3 = array2.filter(obj => obj.korean !== targetWord )
+    return array3
   }else{
    const array1 = getWordsContainingAtLeastTwoLetterFromTargetWordForKorean(targetWord,array) 
   const array2 = arrangeArrayItemsFromShortToLongForKorean(array1, targetWord)
-    return array2
+  const array3 = array2.filter(obj => obj.korean !== targetWord )
+    return array3
   }
 }
 //all this just to find similar words for korean
 ///////////////////////////!/!/!////////////////////////////////
 
+const doRandomSingleInput = (setLeftSingleList, setSearchTerm, leftSingleList, setCurrentItem ) => {
+  const randomN = Math.floor( Math.random()*leftSingleList.length )
+  const arr = [...leftSingleList]
+  arr.splice(randomN, 1)
+  setLeftSingleList(arr)
+  setSearchTerm(leftSingleList[randomN])
+  setCurrentItem({ eng : '', korean : ''})
+}
+
+const OneSimilarWord = ({obj}) => {
+  const [showEng , setShowEng ] = useState(false)
+  return <div>
+  {showEng?
+  <button onClick={()=>setShowEng(false)} >{obj.eng}</button>
+  :
+  <button onClick={()=>setShowEng(true)} >{obj.korean}</button>
+  }
+  </div>
+}
+
 
 
 const Dictionary = () => {
     const [list, setList ] = useState(words)
-    const [currentItem, setCurrentItem ] = useState(list[0])
+    const [currentItem, setCurrentItem ] = useState({eng : '', korean : ''})
     const [ searchEng, setSearchEng ] = useState(false)
     const [ searchTerm, setSearchTerm ] = useState('')
     const [ hideKeyboard, setHideKeyboard ] = useState('hidden')
+    const [ leftSingleList , setLeftSingleList ] = useState(arrayOfSingleLetters)
+    const [ similarWords , setSimilarWords ] = useState([])
+  
+    
     
     const handleChange = (e) =>{
       setSearchTerm(e.target.value)
@@ -135,23 +161,46 @@ const Dictionary = () => {
       
     },[searchTerm])
     
+    useEffect(()=>{
+      const arr = getSimilarWordsForKorean( currentItem.korean , words )
+      setSimilarWords(arr)
+    },[currentItem])
+    
     
     
     return  <div class='h-screen'>
+    <p class='m-2'> all words : {words.length } </p>
     
-    <button onClick={()=>{
-      if(hideKeyboard === ''){ setHideKeyboard('hidden') }
-      else{ setHideKeyboard('') }
-    }} class='m-2 p-3 bg-blue-400 rounded'> consonants </button>
-    
-    <button class='bg-blue-400 rounded m-2 p-3 '>random</button>
-    
-    <div class='p-4 m-2 bg-gray-600 rounded text-white text-2xl'>
-      <p>{currentItem.korean}</p>
-      <p>{currentItem.eng}</p>
+    <div class='flex justify-between'>
+        <button onClick={()=>{
+          if(hideKeyboard === ''){ setHideKeyboard('hidden') }
+          else{ setHideKeyboard('') }
+        }} class='m-2 p-3 bg-blue-400 rounded'> Letters </button>
+        
+        <div class='flex'>
+          <p class='m-2 p-3'>{leftSingleList.length} left </p>
+          <button class='bg-blue-400 rounded m-2 p-3' 
+          onClick={()=>doRandomSingleInput(setLeftSingleList, setSearchTerm, leftSingleList, setCurrentItem )}>random</button>
+        </div>
     </div>
     
-    
+    <div class='flex w-full' >
+        <div class='p-4 m-2 bg-gray-600 rounded text-white text-2xl flex-auto'>
+          <p>{currentItem.korean}</p>
+          <p>{currentItem.eng}</p>
+        </div>
+        
+        <div class='w-auto'>
+          <p class='m-2'>similar words</p>
+          <div class='p-4 m-2 bg-gray-300 rounded '>
+            {
+              similarWords.map(obj => <div>
+                <OneSimilarWord obj={obj} />
+              </div>)
+            }
+          </div>
+        </div>
+    </div>
     
     <div class='bg-gray-600 p-4 m-2 relative h-4/6 overflow-scroll border-4 border-black '>
       

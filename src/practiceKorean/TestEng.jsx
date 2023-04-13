@@ -1,6 +1,6 @@
 import { words } from './words'
 import { useState, useEffect, useRef } from 'react'
-import FillerKeyboard from './FillerKeyboard'
+
 
 
 const TestEnglish = () => {
@@ -10,7 +10,7 @@ const TestEnglish = () => {
     const [wrong, setWrong ] = useState(false)
     const buttonRef = useRef()
     const [peek, setPeek ] = useState(false)
-    const [ hideKeyboard, setHideKeyboard ] = useState('hidden')
+  
     
     const getRandomNumber = (length) => {
       if (length < 2 ){ return 0 }
@@ -58,11 +58,6 @@ const TestEnglish = () => {
     
     return <div>
     
-    <button onClick={()=>{
-      if(hideKeyboard === ''){ setHideKeyboard('hidden') }
-      else{ setHideKeyboard('') }
-    }} class='m-2 p-1 bg-blue-400 rounded'> consonants </button>
-    
     <div class='flex justify-between' >
     <div class='bg-black text-white p-4 m-2 rounded flex-auto'>
       {currentItem.korean }
@@ -88,7 +83,6 @@ const TestEnglish = () => {
   : null }
   
   <button onClick={()=>setPeek(!peek)} > peek </button>
-  <FillerKeyboard setInput={setAnswer} keyboardState={hideKeyboard} />
   
     </div>
   }
