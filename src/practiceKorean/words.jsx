@@ -946,6 +946,7 @@ const raw = [
 ["give/close the shop", "주다/드리다" ],
 ["repair center", "수리센터" ],
 ["bathing", "목욕" ],
+["cooking curry", "요리" ],
 ["drive", "운전" ],
 ["take care", "주심하다" ],
 ["traffic light", "신호" ],
@@ -995,6 +996,7 @@ const raw = [
 ["classroom", "교실" ],
 ["လပိုင်း", "월" ],
 ["ရက်နေ့", "일" ],
+["we", "우리" ],
 /*
 ["", "" ],
 ["", "" ],

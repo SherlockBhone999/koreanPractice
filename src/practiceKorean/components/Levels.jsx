@@ -39,6 +39,7 @@ const OneLevelRoom = ({num}) => {
 
 export default function Levels(){
   const [ levelRooms , setLevelRooms ] = useState([])
+  const navigate = useNavigate()
   
   useEffect(()=>{
     const n = Math.floor( words.length / 50 )
@@ -50,6 +51,10 @@ export default function Levels(){
   },[])
   
   return <div>
+  
+    <div>
+      <button class='bg-gray-400 m-2 p-2 rounded' onClick={()=>navigate('/')}>Back</button>
+    </div>
   
     <div class='grid grid-cols-4'>
       {

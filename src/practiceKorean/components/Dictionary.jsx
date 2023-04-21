@@ -138,30 +138,33 @@ const Dictionary = () => {
     
     return  <div class='h-screen'>
     
-    <div class='flex justify-between'>
+    <div class='flex '>
         <button onClick={()=>{
           if(hideKeyboard === ''){ setHideKeyboard('hidden') }
           else{ setHideKeyboard('') }
         }} class='m-2 p-3 bg-blue-400 rounded'> Letters </button>
         
-        <div class='flex'>
-          <p class='m-2 p-3'>{leftSingleList.length} left </p>
-          <button class='bg-blue-400 rounded m-2 p-3' 
-          onClick={()=>doRandomSingleInput(setLeftSingleList, setSearchTerm, leftSingleList, setCurrentItem )}>random</button>
-        </div>
+        <button class='bg-blue-400 rounded m-2 p-3' 
+        onClick={()=>doRandomSingleInput(setLeftSingleList, setSearchTerm, leftSingleList, setCurrentItem )}>random</button>
+        
+        <p class='m-2 p-3'>{leftSingleList.length} left </p>
+       
     </div>
     
     <p class='m-2'>Total : {words.length}</p>
     
-    <div class='w-full' >
-        <div class='p-4 m-2 bg-gray-600 rounded flex-auto'>
-          <p class='text-white text-2xl '>{currentItem.korean}</p>
-          <p class='text-white text-2xl '>{currentItem.eng}</p>
-          { similarWordsDivided.first.length > 0 ?
-            <SimilarWords similarWordsDivided={similarWordsDivided} />
-          : null }
-        </div>
-    </div>
+    { currentItem.korean !== ''?
+      <div class='w-full' >
+          <div class='p-4 m-2 bg-gray-600 rounded flex-auto'>
+            <p class='text-white text-2xl '>{currentItem.korean}</p>
+            <p class='text-white text-2xl '>{currentItem.eng}</p>
+            { similarWordsDivided.first.length > 0 ?
+              <SimilarWords similarWordsDivided={similarWordsDivided} />
+            : null }
+          </div>
+      </div>
+    : null }
+    
     
     <div class='bg-gray-600 p-4 m-2 relative h-4/6 overflow-scroll border-4 border-black '>
       

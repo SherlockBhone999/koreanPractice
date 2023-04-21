@@ -1,7 +1,9 @@
 import { useState , useEffect } from 'react'
 import { useNavigate , useLocation } from 'react-router-dom'
 import { words } from '../words'
-import { getSimilarWordsForKorean } from './findSimilarWords'
+import { getChoices } from './ChoicesKorean'
+import ChoicesKorean from './ChoicesKorean'
+import ChoicesEng from './ChoicesEng'
 
 
 const OneWord = ({obj}) => {
@@ -20,69 +22,13 @@ const AllWords = ({roomNum}) => {
   return <div>
   <div class='bg-gray-200 m-4 p-3 border-2 border-black rounded grid grid-cols-5 gap-4'>
     {arr.map(obj => <div>
-      <p>{obj.korean}</p>
-      <p>{obj.eng}</p>
+      <p class='flex justify-center text-xl'>{obj.korean}</p>
+      <p class='flex justify-center'>{obj.eng}</p>
     </div>)}
   </div>
   </div>
 }
 
-
-const MultipleChoices = () => {
-  return <div>
-  MultipleChoices
-  </div>
-}
-
-const getRandomItemFromArrayAndSubstractIt = (array) => {
-  const n = Math.floor( Math.random() * array.length )
-  const arr = array.filter(obj => obj.korean !== array[n])
-  return { item : array[n] , array : arr }
-}
-
-const getChoices = (targetObj , setChoices ) => {
-  const targetWord = targetObj.korean
-  const similarWords = getSimilarWordsForKorean(targetWord , words )
-  const choicesArr = []
-  if(similarWords.length >3 ){
-    const obj = getRandomItemFromArrayAndSubstractIt(similarWords)
-    choicesArr.push(obj.item)
-    const obj2 = getRandomItemFromArrayAndSubstractIt(obj.array)
-    choicesArr.push(obj2.item)
-    const obj3 = getRandomItemFromArrayAndSubstractIt(obj2.array)
-    choicesArr.push(obj3.item)
-  }else{
-    if(similarWords.length === 0){
-      const obj = getRandomItemFromArrayAndSubstractIt(words)
-      choicesArr.push(obj.item)
-      const obj2 = getRandomItemFromArrayAndSubstractIt(obj.array)
-      choicesArr.push(obj2.item)
-      const obj3 = getRandomItemFromArrayAndSubstractIt(obj2.array)
-      choicesArr.push(obj3.item)
-    }else if(similarWords.length === 1){
-      choicesArr.push(similarWords[0])
-      const obj = getRandomItemFromArrayAndSubstractIt(words)
-      choicesArr.push(obj.item)
-      const obj2 = getRandomItemFromArrayAndSubstractIt(obj.array)
-      choicesArr.push(obj2.item)
-    }else if(similarWords.length === 2){
-      choicesArr.push(similarWords[0])
-      choicesArr.push(similarWords[1])
-      //theres a chance that two choices can be the same but its luck
-      const obj = getRandomItemFromArrayAndSubstractIt(words)
-      choicesArr.push(obj.item)
-    }else if(similarWords.length === 3){
-      choicesArr.push(similarWords[0])
-      choicesArr.push(similarWords[1])
-      choicesArr.push(similarWords[2])
-    }
-  }
-//need to re-arrange
-choicesArr.push(targetObj)
-
-
-setChoices(choicesArr)
-}
 
 
 const getRandomItem = (setCurrentItem, list, setList, setChoices ) => {
@@ -95,15 +41,18 @@ const getRandomItem = (setCurrentItem, list, setList, setChoices ) => {
   getChoices(list[n], setChoices )
 }
 
+
+
+
 export default function MultipleChoiceRoom () {
   const location = useLocation()
   const roomNum = location.pathname.slice(2,4)
   
   const navigate = useNavigate()
   const [ list, setList ] = useState([])
-  const [ showAllWords , setShowAllWords ] = useState('hidden')
   const [ currentItem ,setCurrentItem ] = useState(null)
   const [ choices, setChoices ] = useState([])
+  const [ chosen, setChosen ] = useState('')
   
   
   useEffect(()=>{
@@ -118,32 +67,59 @@ export default function MultipleChoiceRoom () {
   
   return <div>
   
-    <div>
+    <div class='p-3 bg-blue-200 flex items-center'>
       <button onClick={()=>navigate(-1)} class='bg-gray-400 m-2 p-3 rounded'>Back </button>
+      <p class='m-2'> Room : {roomNum} </p>
     </div>
-    <p> Level : {roomNum} </p>
+   
     
-    <div>
-    { showAllWords === ''?
-      <button onClick={()=>setShowAllWords('hidden') } class='bg-blue-400 m-2 p-3 rounded'> Hide</button>
-    :
-      <button onClick={()=>setShowAllWords('') } class='bg-blue-400 m-2 p-3 rounded'>Show </button>
-    }
+    <div class='flex'>
+      { chosen !== 'test_korean' && currentItem === null ?
+        <button onClick={()=>{
+          getRandomItem(setCurrentItem, list, setList , setChoices )
+          setChosen('test_korean')
+        }} 
+        class='bg-gray-400 m-2 p-3 rounded'>Test Korean</button>
+      : null }
+      
+      
+      { chosen !== 'test_eng' && currentItem === null ?
+        <button onClick={()=>{
+          getRandomItem(setCurrentItem, list, setList , setChoices )
+          setChosen('test_eng')
+        }} 
+        class='bg-gray-400 m-2 p-3 rounded'>Test Eng</button>
+      : null }
+      
+      
+      { currentItem === null ?
+        <button onClick={()=>{
+          if(chosen !== 'all_words'){ setChosen('all_words') }
+          else setChosen('')
+        }} 
+        class='bg-gray-400 m-2 p-3 rounded'>All Words</button>
+      : null }
+      
     </div>
     
-    <div class={`${showAllWords}`}>
-      <AllWords roomNum={roomNum} />
-    </div>
-    
-    <div>
-      <button onClick={()=>getRandomItem(setCurrentItem, list, setList , setChoices )} 
-      class='bg-gray-400 m-2 p-3 rounded'>Start </button>
-    </div>
-    
-    <div>currentItem : {JSON.stringify(currentItem)}</div>
-    
-    <div>choices : {JSON.stringify(choices)}</div>
-    <MultipleChoices />
+    { chosen === 'all_words'? <AllWords roomNum={roomNum} /> : null }
+    { chosen === 'test_korean' ? <div>
+      <ChoicesKorean choices={choices}
+      currentItem={currentItem}
+      list={list}
+      setList={setList}
+      setCurrentItem={setCurrentItem}
+      setChoices={setChoices} />
+    </div> : null }
+    { chosen === 'test_eng' ? <div>
+      <ChoicesEng choices={choices}
+      currentItem={currentItem}
+      list={list}
+      setList={setList}
+      setCurrentItem={setCurrentItem}
+      setChoices={setChoices} />
+    </div> : null }
+
     
   </div>
 }
