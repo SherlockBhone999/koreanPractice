@@ -29,14 +29,15 @@ const SimilarWords = ({similarWordsDivided}) => {
             <div>
               {
                 similarWordsDivided.first.map(obj => <div>
-                <button onClick={()=>setCurrentItem(obj)}>{obj.korean}</button>
+                <button onClick={()=>setCurrentItem(obj)} 
+                class='w-[100px] h-[30px] overflow-scroll mt-1'>{obj.korean}</button>
                 </div>)
                   
               }
             </div>
             <div class='ml-5 '>
               {
-                similarWordsDivided.first.map(obj => <div class=''>
+                similarWordsDivided.first.map(obj => <div class=' w-[150px] overflow-scroll h-[30px] mt-1'>
                 <div class=''>{obj.eng}</div>
                 </div>)
               }
@@ -45,14 +46,15 @@ const SimilarWords = ({similarWordsDivided}) => {
         <div class='p-4 m-2 bg-gray-300 rounded flex'>
             <div>
               {
-                similarWordsDivided.second.map(obj => <div>
+                similarWordsDivided.second.map(obj => <div 
+                class='w-[100px] h-[30px] overflow-scroll mt-1'>
                 <button onClick={()=>setCurrentItem(obj)}>{obj.korean}</button>
                 </div>)
               }
             </div>
             <div class='ml-5 '>
               {
-                similarWordsDivided.second.map(obj => <div class=''>
+                similarWordsDivided.second.map(obj => <div class='w-[150px] overflow-scroll h-[30px] mt-1'>
                 <div class=''>{obj.eng}</div>
                 </div>)
               }
@@ -186,7 +188,7 @@ const Dictionary = () => {
       
           <div class='grid grid-cols-4 p-2 rounded'>
             {list.map(item => <button onClick={()=>setCurrentItem(item)}>
-                <p class='text-lg'>{item.korean}</p>
+                <p class='text-lg '>{item.korean}</p>
                 <p class='text-xs mb-4'>{item.eng}</p>
               </button>)}
           </div>  

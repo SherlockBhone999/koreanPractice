@@ -92,7 +92,40 @@ const arrangeArrayItemsFromShortToLongForKorean = (array, targetWord) => {
 
 
 
-
+export const getSimilarWordsForKorean = (targetWord, array) => {
+  if(targetWord.length === 1){
+    const array1 = array.filter(obj => obj.korean.includes(targetWord))
+    const array2 = arrangeArrayItemsFromShortToLongForKorean(array1, targetWord)
+    const array3 = array2.filter(obj => obj.korean !== targetWord )
+    return array3
+  }else if(targetWord.length === 2 && !exceptionArray.includes(targetWord)){
+    const array1 = array.filter(obj => obj.korean.startsWith(targetWord[0]))
+    const array2 = array.filter(obj => {
+      if(targetWord[1] !== '다'){
+        return obj.korean.endsWith(targetWord[1])
+      }
+      })
+    const array3 = array1.concat(array2)
+    const array4 = array3.filter(obj => obj.korean !== targetWord)
+    const array5 = arrangeArrayItemsFromShortToLongForKorean(array4, targetWord)
+    return array5
+  }else if(targetWord.length > 2 && targetWord.endsWith('하다')){
+    const tw = targetWord.substring(0, targetWord.indexOf('하'))
+    const array1 = array.filter(obj => obj.korean.startsWith(tw[0]))
+    const array2 = array.filter(obj =>  obj.korean.endsWith(tw[1]) )
+    const array3 = array1.concat(array2)
+    const array4 = array3.filter(obj => obj.korean !== targetWord)
+    const array5 = arrangeArrayItemsFromShortToLongForKorean(array4, targetWord)
+    return array5
+  
+  }else{
+   const array1 = getWordsContainingAtLeastTwoLetterFromTargetWordForKorean(targetWord,array) 
+  const array2 = arrangeArrayItemsFromShortToLongForKorean(array1, targetWord)
+  const array3 = array2.filter(obj => obj.korean !== targetWord )
+    return array3
+  }
+}
+/*
 export const getSimilarWordsForKorean = (targetWord, array) => {
   if(targetWord.length === 1){
     const array1 = array.filter(obj => obj.korean.includes(targetWord))
@@ -119,3 +152,4 @@ export const getSimilarWordsForKorean = (targetWord, array) => {
   }
 }
 
+*/
