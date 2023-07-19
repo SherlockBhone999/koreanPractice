@@ -48,7 +48,9 @@ function ContextP () {
     
     
   }}>
-    <App/>
+    <div class="mt-8">
+      <App/>
+    </div>
   </Context.Provider>
 }
 
