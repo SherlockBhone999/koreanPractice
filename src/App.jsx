@@ -48,9 +48,11 @@ function ContextP () {
     
     
   }}>
+  <div class="w-screen h-screen overflow-hidden">
     <div class="mt-8">
       <App/>
     </div>
+  </div>
   </Context.Provider>
 }
 

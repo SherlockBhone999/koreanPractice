@@ -2,7 +2,7 @@
 
 const OneButton = ({data, setCurrentRoom}) => {
   return <div class="w-full flex justify-center items-center">
-    <button class="w-24 h-24 bg-blue-300 rounded-lg shadow m-2 p-2"
+    <button class=" bg-blue-300 rounded-lg shadow m-2 w-full h-16"
     onClick={()=>{
       setCurrentRoom(data.num)
     }}>{ data.num }</button>
@@ -11,10 +11,12 @@ const OneButton = ({data, setCurrentRoom}) => {
 
 const Rooms = ({list, setCurrentRoom}) => {
   
-  return <div class="w-full grid grid-cols-2 ">
-    {list.map(obj => <div>
-      <OneButton data={obj} setCurrentRoom={setCurrentRoom} />
-    </div>)}
+  return <div class="w-full h-[75vh] overflow-scroll">
+    <div class="w-full grid grid-cols-2 gap-1">
+      {list.map(obj => <div>
+        <OneButton data={obj} setCurrentRoom={setCurrentRoom} />
+      </div>)}
+    </div>
   </div>
 }
 

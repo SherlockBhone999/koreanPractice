@@ -15,7 +15,7 @@ export default function Groups(){
   
   
   return <div class="m-4 ">
-    <div class="grid ">
+    <div class="grid h-[80vh] overflow-scroll">
       <button onClick={()=>navigate('/groups/1N')} class={btnStyle}> 
         <div class={divStyle}>
           <p>1N</p>

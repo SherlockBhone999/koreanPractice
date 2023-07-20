@@ -48,7 +48,7 @@ export default function Room () {
     setList(arrr)
   },[])
   
-  return <div class="">
+  return <div class="h-[80vh] overflow-hidden">
    <ChoiceButtons setChosen={setChosen} chosen={chosen}/>
    <Chosen chosen={chosen} list={list} setChosen={setChosen}/>
    

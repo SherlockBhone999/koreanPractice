@@ -3,7 +3,7 @@
 //just copy 1NRoome
 const OneButton = ({data, setCurrentRoom}) => {
   return <div class="w-full flex justify-center items-center">
-    <button class="w-24 h-24 bg-blue-300 rounded-lg shadow m-2 p-2"
+    <button class="bg-blue-300 rounded-lg shadow m-2 w-full h-16"
     onClick={()=>{
       setCurrentRoom(data.num)
     }}>{ data.num }</button>

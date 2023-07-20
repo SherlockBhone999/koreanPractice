@@ -18,8 +18,8 @@ const OneItem = ({item, setCurrentItem, currentItem }) => {
   },[currentItem])
   return <div>
       <button class={`w-full h-full ${style}`} onClick={()=>setCurrentItem(item)}>
-        <p class="text-2xl"> {item.korean}</p>
-        <p class=""> {item.eng}</p>
+        <p class="text-xl"> {item.korean}</p>
+        <p class="text-xs"> {item.eng}</p>
       </button>
   </div>
 }
@@ -48,8 +48,8 @@ const Fragments = ({list}) => {
 const Result = ({currentItem, fragments }) => {
   return <div class="   ">
     <div class="m-4">
-      <p class="text-4xl"> {currentItem.korean}</p>
-      <p class="text-xl"> {currentItem.eng}</p>
+      <p class="text-xl"> {currentItem.korean}</p>
+      <p class=""> {currentItem.eng}</p>
     </div>
     <Fragments list={fragments} />
   </div>
@@ -58,7 +58,7 @@ const Result = ({currentItem, fragments }) => {
 const Similar = ({list}) => {
   return <div class=" ">
     {
-      list.map(obj => <div class="flex">
+      list.map(obj => <div class="flex w-72">
         <p class="mb-2 mr-2"> {obj.korean} </p>
         <p class="text-xs mb-2"> {obj.eng} </p>
       </div>)
@@ -92,19 +92,19 @@ const Room = ({list}) => {
   },[list])
   
   return <div>
-    <div class=" h-[80vh] bg-gray-100 flex">
+    <div class=" h-[67vh] bg-gray-100 flex">
   
-      <div class="w-2/6 h-full bg-stone-200 flex flex-col">
+      <div class="w-48 h-full bg-stone-200 flex flex-col overflow-scroll">
         <div class="h-[30vh]  ">
           <Result currentItem={currentItem} fragments={fragments}/>
         </div>
-        <hr class="h-0.5 bg-gray-400"/>
+       {/* <hr class="h-0.5 bg-gray-600"/> */}
         <div class="flex-auto p-2">
           <Similar list={similarWords}/>
         </div>
       </div>
     
-      <div class="flex-auto h-full overflow-scroll">
+      <div class="w-full h-full overflow-scroll">
         <Menu list={list} setCurrentItem={setCurrentItem} currentItem={currentItem}/>
       </div>
     </div>

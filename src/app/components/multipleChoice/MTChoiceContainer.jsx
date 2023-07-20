@@ -15,10 +15,10 @@ const CurrentItem = ({ currentItem, setOptions, chosenTest }) => {
   const cIarr = [ currentItem ]
   
   return <div class=" flex justify-center m-4">
-    <div class="bg-pink-500 rounded-lg shadow-lg w-96 h-60 flex justify-center items-center overflow-scroll p-2">
+    <div class="bg-pink-500 rounded-lg shadow-lg w-48 h-36 flex justify-center items-center overflow-scroll p-2">
       <div>
-      {chosenTest === "testKorea"? <p class="text-6xl flex justify-center">{currentItem.eng}</p>:
-      <p class="text-6xl flex justify-center">{currentItem.korean}</p>}
+      {chosenTest === "testKorea"? <p class="text-2xl flex justify-center">{currentItem.eng}</p>:
+      <p class="text-2xl flex justify-center">{currentItem.korean}</p>}
       </div>
     </div>
   </div>

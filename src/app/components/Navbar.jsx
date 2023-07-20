@@ -28,7 +28,7 @@ export default function Navbar(){
   
   return (
     <>
-      <div class="m-4 h-12 text-sm bg-blue-300 flex justify-between">
+      <div class="m-4 h-12 text-xs bg-blue-300 flex justify-between">
         <div class="flex p-2">
           {navList.map((obj)=> <div>
              <button onClick={()=>navigate(obj.destination)} class="m-1"> {obj.name}</button>

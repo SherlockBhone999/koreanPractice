@@ -47,11 +47,11 @@ const SearchAndResult = ({ currentItem, setCurrentItem}) => {
             <p class='bg-gray-600 p-2 text-white '> {list.length} items found </p>
           </div>
       
-          <div class='grid grid-cols-4 p-2 rounded gap-2'>
-            {list.map(obj => <div class="flex justify-center">
+          <div class='grid grid-cols-3 p-2vrounded gap-2 overflow-hidden'>
+            {list.map(obj => <div class="flex justify-center overflow-scroll">
               <button onClick={()=>setCurrentItem(obj)}>
-                <p class="text-2xl">{obj.korean}</p>
-                <p class="text-sm">{obj.eng}</p>
+                <p class="text-xl ">{obj.korean}</p>
+                <p class="text-xs ">{obj.eng}</p>
               </button>
             </div>)}
           </div>  

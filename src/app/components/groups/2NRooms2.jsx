@@ -1,6 +1,6 @@
 const OneButton = ({data, setCurrentRoom}) => {
   return <div class="w-full flex justify-center items-center">
-    <button class="w-36 h-12 bg-blue-300 rounded-lg shadow m-2 p-2"
+    <button class=" h-12 bg-blue-300 rounded-lg shadow m-2 p-2"
     onClick={()=>{
       setCurrentRoom(data.letter+"-")
     }}>{ data.letter }-</button>
@@ -9,7 +9,7 @@ const OneButton = ({data, setCurrentRoom}) => {
 
 const OneButton2 = ({data, setCurrentRoom}) => {
   return <div class="w-full flex justify-center items-center">
-    <button class="w-36 h-12 bg-blue-300 rounded-lg shadow m-2 p-2"
+    <button class=" h-12 bg-blue-300 rounded-lg shadow m-2 p-2"
     onClick={()=>{
       setCurrentRoom("-"+data.letter)
     }}>-{ data.letter }</button>
@@ -18,7 +18,7 @@ const OneButton2 = ({data, setCurrentRoom}) => {
 
 const Rooms = ({groupObj, setCurrentRoom}) => {
   
-  return <div class="w-full grid grid-cols-12">
+  return <div class="w-full grid grid-cols-7 h-[60vh] overflow-scroll">
     {groupObj.starts.map(obj => <div>
       <OneButton data={obj} setCurrentRoom={setCurrentRoom} />
     </div>)}
