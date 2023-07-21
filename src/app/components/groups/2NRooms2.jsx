@@ -18,7 +18,7 @@ const OneButton2 = ({data, setCurrentRoom}) => {
 
 const Rooms = ({groupObj, setCurrentRoom}) => {
   
-  return <div class="w-full grid grid-cols-7 h-[60vh] overflow-scroll">
+  return <div class="w-full grid grid-cols-6 h-[60vh] overflow-scroll">
     {groupObj.starts.map(obj => <div>
       <OneButton data={obj} setCurrentRoom={setCurrentRoom} />
     </div>)}

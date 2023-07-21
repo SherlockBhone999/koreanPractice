@@ -39,9 +39,9 @@ const NextPrevBtn = ({ groupObj, setCurrentRoom, currentRoom}) => {
   
   
   return <div>
-    <div class="flex justify-end">
-      <p class="mr-4 flex items-center"> {index+1}/{arrOfNumAndLetters.length}</p>
-      <button onClick={()=>handlePrev(index, setCurrentRoom, arrOfNumAndLetters )} class="p-2 bg-blue-400"> Prev </button>
+    <div class="flex justify-end text-[0.75rem]">
+      <p class="mr-4 flex items-center "> {index+1}/{arrOfNumAndLetters.length}</p>
+      <button onClick={()=>handlePrev(index, setCurrentRoom, arrOfNumAndLetters )} class="p-2 bg-blue-400 mr-0.5"> Prev </button>
       <button onClick={()=>handleNext(index, setCurrentRoom, arrOfNumAndLetters )} class="p-2 bg-blue-400"> Next </button>
       
     </div>

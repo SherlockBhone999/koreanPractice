@@ -18,15 +18,15 @@ const OneItem = ({item, setCurrentItem, currentItem }) => {
   },[currentItem])
   return <div>
       <button class={`w-full h-full ${style}`} onClick={()=>setCurrentItem(item)}>
-        <p class="text-xl"> {item.korean}</p>
-        <p class="text-xs"> {item.eng}</p>
+        <p class="text-[0.75rem]"> {item.korean}</p>
+        <p class="text-[5px]"> {item.eng}</p>
       </button>
   </div>
 }
 
 const Menu = ({list , setCurrentItem , currentItem }) => {
   
-  return <div class="grid grid-cols-3 gap-2">
+  return <div class="grid grid-cols-2 gap-2">
     {list.map(obj => <div class="flex justify-center w-full h-full overflow-scroll mb-2">
       <OneItem item={obj} setCurrentItem={setCurrentItem} currentItem={currentItem}/>
     </div>)}
@@ -38,8 +38,8 @@ const Fragments = ({list}) => {
   return <div class="m-2 ">
     {
       list.map(obj => <div class="flex">
-        <p class="mb-1 mr-2"> {obj.korean} </p>
-        <p class="text-sm mb-1"> {obj.eng} </p>
+        <p class="text-[0.75rem] mb-1 mr-2"> {obj.korean} </p>
+        <p class="text-[0.1rem] mb-1"> {obj.eng} </p>
       </div>)
     }
   </div>
@@ -48,8 +48,8 @@ const Fragments = ({list}) => {
 const Result = ({currentItem, fragments }) => {
   return <div class="   ">
     <div class="m-4">
-      <p class="text-xl"> {currentItem.korean}</p>
-      <p class=""> {currentItem.eng}</p>
+      <p class="text-[0.75rem]"> {currentItem.korean}</p>
+      <p class="text-[0.1rem]"> {currentItem.eng}</p>
     </div>
     <Fragments list={fragments} />
   </div>
@@ -59,8 +59,8 @@ const Similar = ({list}) => {
   return <div class=" ">
     {
       list.map(obj => <div class="flex w-72">
-        <p class="mb-2 mr-2"> {obj.korean} </p>
-        <p class="text-xs mb-2"> {obj.eng} </p>
+        <p class="text-[0.75rem] mb-2 mr-2"> {obj.korean} </p>
+        <p class="text-[0.1rem] mb-2"> {obj.eng} </p>
       </div>)
     }
   </div>
@@ -94,7 +94,7 @@ const Room = ({list}) => {
   return <div>
     <div class=" h-[67vh] bg-gray-100 flex">
   
-      <div class="w-48 h-full bg-stone-200 flex flex-col overflow-scroll">
+      <div class="w-56 h-full bg-stone-200 flex flex-col overflow-scroll">
         <div class="h-[30vh]  ">
           <Result currentItem={currentItem} fragments={fragments}/>
         </div>

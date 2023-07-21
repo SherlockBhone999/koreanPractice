@@ -8,7 +8,7 @@ import { useState, useEffect} from 'react'
 
 const Nav = ({currentRoom, setCurrentRoom}) => {
   return <div class="w-full flex justify-center ">
-    <div class="flex ">
+    <div class="flex text-[0.75rem]">
       <button onClick={()=>{
         setCurrentRoom(null)
       }}> rooms</button>
@@ -47,7 +47,7 @@ export default function Container ({groupObj}) {
     <Nav currentRoom={currentRoom} setCurrentRoom={setCurrentRoom}/>
   
     <div class={`flex justify-center ${roomsShowOrNot}`}>
-      <div class="w-4/12">
+      <div class="w-7/12">
         <Rooms list={listForRooms} setCurrentRoom={setCurrentRoom}/>
       </div>
     </div>
