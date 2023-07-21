@@ -30,11 +30,11 @@ const SearchAndResult = ({ currentItem, setCurrentItem}) => {
   },[searchTerm])
   
   return <div>
-    <div class="h-[65vh] bg-gray-600 overflow-scroll m-2 p-4 border-2 border-black relative">
-      <input type='text' class='p-2 rounded mb-2' placeholder='...search' value={searchTerm} onChange={(e)=>setSearchTerm(e.target.value)}/>
+    <div class="h-[64vh] bg-gray-600 overflow-scroll m-2 p-4 border-2 border-black relative">
+      <input type='text' class='p-2 rounded mb-2 text-[0.75rem]' placeholder='...search' value={searchTerm} onChange={(e)=>setSearchTerm(e.target.value)}/>
       
       <div class='absolute top-10 right-0 bg-white text-blue-600 rounded border-4 border-black m-1' >
-        <button class='p-4' onClick={()=>{
+        <button class='p-3 text-[0.75rem]' onClick={()=>{
           if(searchLanguage === "eng") setSearchLanguage("korean")
           else setSearchLanguage("eng")
         }}>
@@ -44,7 +44,7 @@ const SearchAndResult = ({ currentItem, setCurrentItem}) => {
       
         <div class='bg-gray-200 rounded '>
           <div class='flex' >
-            <p class='bg-gray-600 p-2 text-white '> {list.length} items found </p>
+            <p class='bg-gray-600 p-2 text-white text-[0.1rem]'> {list.length} items found </p>
           </div>
       
           <div class='grid grid-cols-3 p-2vrounded gap-2 overflow-hidden'>

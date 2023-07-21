@@ -47,7 +47,7 @@ const Fragments = ({list}) => {
 
 const Result = ({currentItem, fragments }) => {
   return <div class="   ">
-    <div class="m-4">
+    <div class="m-4 w-72">
       <p class="text-[0.75rem]"> {currentItem.korean}</p>
       <p class="text-[0.1rem]"> {currentItem.eng}</p>
     </div>
@@ -98,7 +98,7 @@ const Room = ({list}) => {
         <div class="h-[30vh]  ">
           <Result currentItem={currentItem} fragments={fragments}/>
         </div>
-       {/* <hr class="h-0.5 bg-gray-600"/> */}
+       <hr class="h-0.5 bg-gray-600"/> 
         <div class="flex-auto p-2">
           <Similar list={similarWords}/>
         </div>

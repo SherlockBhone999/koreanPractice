@@ -1,7 +1,7 @@
 import { items } from './allItems'
-
-const oneNs = items.filter(obj => obj.korean.length === 1)
-const oneVs = items.filter(item => item.korean.length === 2 && item.korean[1] === "다")
+//because of extra space
+const oneNs = items.filter(obj => obj.korean.length === 2)
+const oneVs = items.filter(item => item.korean.length === 3 && item.korean[1] === "다")
 
 export const getFragments = (item) => {
   const array = []

@@ -9,8 +9,8 @@ const Fragments = ({list}) => {
   return <div class=" ">
     {
       list.map(obj => <div class="flex">
-        <p class="mb-2 mr-2"> {obj.korean} </p>
-        <p class="text-sm mb-2"> {obj.eng} </p>
+        <p class="text-[0.75rem] mb-2 mr-2"> {obj.korean} </p>
+        <p class="text-[0.1rem] mb-2"> {obj.eng} </p>
       </div>)
     }
   </div>
@@ -20,8 +20,8 @@ const Similar = ({list}) => {
   return <div class=" ">
     {
       list.map(obj => <div class="flex w-96 overflow-x-scroll mb-1">
-        <p class="mb-2 mr-2 text-xl"> {obj.korean} </p>
-        <p class=" mb-2"> {obj.eng} </p>
+        <p class="mb-2 mr-2 text-[0.75rem]"> {obj.korean} </p>
+        <p class="text-[0.1rem] mb-2"> {obj.eng} </p>
       </div>)
     }
   </div>
@@ -32,8 +32,8 @@ const CurrentItemAndSimilars = ({currentItem, similarWords , fragments}) => {
   return <div class="m-2 p-4 bg-blue-50 grid grid-flow-col w-full">
     <div class="flex flex-col ">
       <div class="mb-3 w-48">
-        <p class=" text-2xl w-full overflow-scroll">{currentItem.korean} </p>
-        <p class=" text-xl w-full overflow-scroll">{currentItem.eng} </p>
+        <p class=" text-[0.75rem] w-full overflow-scroll">{currentItem.korean} </p>
+        <p class=" text-[0.1rem] w-full overflow-scroll">{currentItem.eng} </p>
       </div>
       <Fragments list={fragments} />
     

@@ -35,7 +35,7 @@ export default function Navbar(){
           </div>)}
         </div>
         
-        <button class="bg-red-400 w-1/12 flex justify-center items-center" 
+        <button class="bg-red-400 w-2/12 flex justify-center items-center" 
         onClick={()=>{
           if(sideStyle==="translate-y-full") setSideStyle("translate-y-half")
           else setSideStyle("translate-y-full")
