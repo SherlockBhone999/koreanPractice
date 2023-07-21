@@ -15,8 +15,8 @@ const LastRoomDoor = ({lastRoomNum}) => {
     }} class="w-full h-[10vh] bg-blue-200 rounded m-2 flex justify-center items-center"
     >
       <div>
-        <p class="text-xl">{lastRoomNum+1}</p>
-        <p class="text-xs">{lastRoomNum*50} - {allItems.length}</p>
+        <p class="text-[0.75rem]">{lastRoomNum+1}</p>
+        <p class="text-[0.1rem]">{lastRoomNum*50} - {allItems.length}</p>
       </div>
     </button>
   </div>
@@ -32,8 +32,8 @@ const OneRoomDoor = ({num}) => {
     }} class="w-full h-[10vh] bg-blue-200 rounded m-2 flex justify-center items-center"
     >
       <div>
-        <p class="text-xl">{num}</p>
-        <p class="text-xs">{(num-1)*50} - {num*50}</p>
+        <p class="text-[0.75rem]">{num}</p>
+        <p class="text-[0.1rem]">{(num-1)*50} - {num*50}</p>
       </div>
     </button>
   </div>
